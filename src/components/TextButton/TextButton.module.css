@@ -1,0 +1,24 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 0;
+  color: var(--color-common-accent);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-s);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-caption-caps);
+  border-radius: var(--radius-xxs);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.button:hover:not(:disabled) {
+  color: var(--color-common-brand-background);
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

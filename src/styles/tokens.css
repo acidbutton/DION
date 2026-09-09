@@ -1,0 +1,98 @@
+/**
+ * Design tokens extracted from the DION Figma design system
+ * (file "Design system", library "Design system" + variable defs read
+ * from the "Поиск"/Mail screen node). Names mirror the Figma variable
+ * paths so changes stay traceable back to the source of truth.
+ */
+:root {
+  /* Color / common */
+  --color-common-contrast: #292a2e;
+  --color-common-low-contrast: #666a73;
+  --color-common-additional: #8f909e;
+  --color-common-accent: #3381ff;
+  --color-common-brand-background: #0062ff;
+  --color-common-brand-contrast: #fafcff;
+  --color-common-transparent: rgba(0, 0, 0, 0.05);
+  --color-common-divider: rgba(0, 0, 0, 0.05);
+  --color-common-error-content: #f94c4c;
+
+  /* Color / lines */
+  --color-lines-divider: rgba(0, 0, 0, 0.05);
+  --color-lines-divider-bright: rgba(0, 0, 0, 0.2);
+
+  /* Color / elevation */
+  --color-elevation-0-main: #fafcff;
+  --color-elevation-1-main: #f5f7f9;
+
+  /* Color / sky-elevation (selected / active state) */
+  --color-sky-main: #e5efff;
+  --color-sky-accent: #0062ff;
+  --color-sky-contrast: #001d4c;
+  --color-sky-low-contrast: #003b99;
+  --color-sky-error-content: #f94c4c;
+
+  /* Color / rail (icon rail is rendered dark in the source file;
+     reused from color/common/contrast rather than a new hardcoded value) */
+  --color-rail-bg: var(--color-common-contrast);
+  --color-rail-icon: rgba(250, 252, 255, 0.72);
+  --color-rail-icon-hover: rgba(250, 252, 255, 0.92);
+  --color-rail-item-active-bg: rgba(250, 252, 255, 0.12);
+  --color-rail-item-icon-active: #5b9dff;
+
+  /* Radius */
+  --radius-none: 0px;
+  --radius-xxs: 4px;
+  --radius-xs: 6px;
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Spacing / general */
+  --spacing-none: 0px;
+  --spacing-xxxs: 2px;
+  --spacing-xxs: 4px;
+  --spacing-xs: 6px;
+  --spacing-s: 8px;
+  --spacing-m: 12px;
+  --spacing-l: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
+
+  /* Typography — brand faces (VTB Group UI / TikTok Sans) are not
+     licensed/available in this environment, so the family tokens
+     resolve to a close system-font stack instead. Scale, weights
+     and line-heights follow the Figma tokens exactly. */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --font-size-xxs: 11px;
+  --font-size-xs: 12px;
+  --font-size-s: 14px;
+  --font-size-m: 16px;
+  --font-size-l: 22px;
+
+  --line-height-xxs: 12px;
+  --line-height-s: 16px;
+  --line-height-m: 18px;
+  --line-height-l: 22px;
+  --line-height-xl: 24px;
+
+  --letter-spacing-caption: 0.06px;
+  --letter-spacing-caption-caps: 0.36px;
+
+  /* Icon sizes */
+  --icon-size-s: 16px;
+  --icon-size-m: 20px;
+  --icon-size-l: 24px;
+
+  /* Shadows */
+  --shadow-panel: 0 8px 24px rgba(20, 22, 30, 0.12), 0 2px 6px rgba(20, 22, 30, 0.06);
+  --shadow-popover: 0 4px 16px rgba(20, 22, 30, 0.16);
+}

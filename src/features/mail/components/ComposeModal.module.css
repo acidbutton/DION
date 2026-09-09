@@ -1,0 +1,54 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-m) 0 var(--spacing-l);
+  gap: var(--spacing-m);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  border-bottom: 1px solid var(--color-lines-divider);
+  padding-bottom: var(--spacing-m);
+}
+
+.field:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-low-contrast);
+}
+
+.input {
+  border: none;
+  outline: none;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+  color: var(--color-common-contrast);
+  background: transparent;
+  padding: 4px 0;
+}
+
+.inputError {
+  color: var(--color-common-error-content);
+}
+
+.error {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-error-content);
+}
+
+.textarea {
+  border: none;
+  outline: none;
+  resize: vertical;
+  min-height: 160px;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+  color: var(--color-common-contrast);
+  background: transparent;
+  font-family: inherit;
+}

@@ -1,0 +1,113 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--color-elevation-0-main);
+  border: 1px solid var(--color-lines-divider);
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-panel);
+  transform: translateY(-1px);
+}
+
+.thumbnailButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+.thumbnail {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+}
+
+.thumb0 {
+  background: linear-gradient(135deg, #bcd3ff 0%, #6d8dff 45%, #2f4fe0 100%);
+}
+
+.thumb1 {
+  background: linear-gradient(135deg, #dfe6ff 0%, #9aa8ff 40%, #5f6ee6 100%);
+}
+
+.thumb2 {
+  background: linear-gradient(135deg, #eaf1ff 0%, #b7c8ff 50%, #7f95f2 100%);
+}
+
+.thumb3 {
+  background: linear-gradient(135deg, #cfe0ff 0%, #97b4ff 50%, #4c6de0 100%);
+}
+
+.thumb4 {
+  background: linear-gradient(135deg, #f2f5ff 0%, #c7d3ff 50%, #8ea0f2 100%);
+}
+
+.thumb5 {
+  background: linear-gradient(135deg, #d7e2ff 0%, #a8b9ff 45%, #6478e0 100%);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--spacing-m);
+}
+
+.metaTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ownerTag {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 var(--spacing-xs);
+  border-radius: var(--radius-xxs);
+  background: var(--color-common-transparent);
+  font-size: var(--font-size-xs);
+  color: var(--color-common-low-contrast);
+}
+
+.menuButton {
+  position: relative;
+  display: flex;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.titleInput {
+  width: 100%;
+  border: 1px solid var(--color-common-brand-background);
+  border-radius: var(--radius-xxs);
+  padding: 1px 4px;
+  font: inherit;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-common-contrast);
+  background: var(--color-elevation-0-main);
+  outline: none;
+}
+
+.date {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-s);
+  color: var(--color-common-additional);
+}

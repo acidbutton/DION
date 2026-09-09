@@ -1,0 +1,28 @@
+.wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxl);
+}
+
+.card {
+  max-width: 360px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+.title {
+  font-size: 20px;
+  line-height: var(--line-height-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-common-contrast);
+}
+
+.text {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+  color: var(--color-common-low-contrast);
+}

@@ -1,0 +1,49 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  width: 100%;
+  height: 24px;
+  padding: 4px 12px 4px 8px;
+  border-radius: var(--radius-s);
+  text-align: left;
+  color: var(--color-common-contrast);
+  transition: background-color 0.12s ease;
+}
+
+.item:hover {
+  background: var(--color-common-transparent);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-common-contrast);
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+}
+
+.active {
+  background: var(--color-sky-main);
+}
+
+.active .label {
+  color: var(--color-sky-accent);
+  font-weight: var(--font-weight-regular);
+}
+
+.active .icon {
+  color: var(--color-sky-accent);
+}

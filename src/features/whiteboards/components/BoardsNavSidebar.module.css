@@ -1,0 +1,50 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  width: 264px;
+  flex-shrink: 0;
+  height: 100%;
+  padding: var(--spacing-xl) var(--spacing-l) 0;
+  border-right: 1px solid var(--color-lines-divider);
+}
+
+.topRow {
+  display: flex;
+  gap: var(--spacing-s);
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-l);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.folderSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 20px;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-low-contrast);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caption-caps);
+}

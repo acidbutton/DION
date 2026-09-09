@@ -1,0 +1,24 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 14px;
+  min-width: 14px;
+  padding: 1px 4px 2px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xxs);
+  line-height: var(--line-height-xxs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.11px;
+  white-space: nowrap;
+}
+
+.brand {
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+}
+
+.neutral {
+  background: var(--color-common-transparent);
+  color: var(--color-common-contrast);
+}

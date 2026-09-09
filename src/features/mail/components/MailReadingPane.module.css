@@ -1,0 +1,214 @@
+.pane {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-common-low-contrast);
+  font-size: var(--font-size-s);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 var(--spacing-l);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 20px;
+  line-height: var(--line-height-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.rowContainer {
+  padding: 0 var(--spacing-l);
+  flex-shrink: 0;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-l);
+  padding: 8px 0;
+}
+
+.rowInner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-s);
+  flex-shrink: 0;
+}
+
+.titleBlock {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 1px;
+}
+
+.nameDate {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-s);
+}
+
+.senderName {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-common-contrast);
+}
+
+.date {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-s);
+  color: var(--color-common-additional);
+}
+
+.recipientDetails {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-s);
+}
+
+.toLabel {
+  color: var(--color-common-additional);
+}
+
+.recipients {
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tagActions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.marks {
+  padding-bottom: 8px;
+}
+
+.tagButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  height: 18px;
+  padding: 0 var(--spacing-xs);
+  border-radius: var(--radius-full);
+  border: 1px dashed var(--color-lines-divider-bright);
+  color: var(--color-common-low-contrast);
+  font-size: var(--font-size-xs);
+}
+
+.tagButton:hover {
+  color: var(--color-common-contrast);
+  border-color: var(--color-common-additional);
+}
+
+.message {
+  padding: var(--spacing-l);
+}
+
+.body {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-xl);
+  color: var(--color-common-contrast);
+  white-space: pre-wrap;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-s);
+  padding: 12px var(--spacing-l);
+  flex-shrink: 0;
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+}
+
+.threadRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-m);
+  padding: 12px var(--spacing-l);
+  border-top: 1px solid var(--color-lines-divider);
+  text-align: left;
+  width: 100%;
+}
+
+.threadRow:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.threadChevron {
+  color: var(--color-common-additional);
+  flex-shrink: 0;
+  transition: transform 0.12s ease;
+}
+
+.threadDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-common-brand-background);
+  flex-shrink: 0;
+}
+
+.threadSender {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  color: var(--color-common-contrast);
+  flex-shrink: 0;
+}
+
+.threadPreview {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  color: var(--color-common-low-contrast);
+}
+
+.threadIcon {
+  color: var(--color-common-additional);
+  flex-shrink: 0;
+}
+
+.threadDate {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-common-additional);
+  width: 96px;
+  text-align: right;
+}

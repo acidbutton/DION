@@ -1,0 +1,124 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  width: 264px;
+  flex-shrink: 0;
+  height: 100%;
+  padding: var(--spacing-xl) var(--spacing-l) 0;
+  border-right: 1px solid var(--color-lines-divider);
+}
+
+.searchBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+.searchRow {
+  display: flex;
+  gap: var(--spacing-s);
+}
+
+.composeRow {
+  display: flex;
+  height: 32px;
+  border-radius: var(--radius-s);
+  overflow: hidden;
+}
+
+.composeButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-medium);
+  padding: 0 var(--spacing-m);
+  transition: background-color 0.12s ease;
+}
+
+.composeButton:hover {
+  background: #0052d6;
+}
+
+.composeCaret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.12s ease;
+}
+
+.composeCaret:hover {
+  background: #0052d6;
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-l);
+  padding-bottom: var(--spacing-l);
+  margin-right: -8px;
+  padding-right: 8px;
+}
+
+.folderList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.folderTree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.customFolders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  justify-content: space-between;
+  min-height: 20px;
+}
+
+.sectionIcon {
+  color: var(--color-common-low-contrast);
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-s);
+  color: var(--color-common-low-contrast);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caption-caps);
+}
+
+.accountSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  padding-top: var(--spacing-s);
+  border-top: 1px solid var(--color-lines-divider);
+}
