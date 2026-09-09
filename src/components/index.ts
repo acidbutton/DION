@@ -27,3 +27,10 @@ export type { ModalProps } from './Modal/Modal';
 
 export { Menu } from './Menu/Menu';
 export type { MenuProps, MenuItem } from './Menu/Menu';
+
+export { ResizeHandle } from './ResizeHandle/ResizeHandle';
+export type { ResizeHandleProps } from './ResizeHandle/ResizeHandle';
+
+export { ToastProvider } from './Toast/ToastContext';
+export type { ToastAction } from './Toast/toastContextInstance';
+export { useToast } from './Toast/useToast';

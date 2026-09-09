@@ -6,6 +6,7 @@ export interface MenuItem {
   label: string;
   icon?: ReactNode;
   destructive?: boolean;
+  selected?: boolean;
   onSelect: () => void;
 }
 
@@ -13,9 +14,11 @@ export interface MenuProps {
   items: MenuItem[];
   onClose: () => void;
   align?: 'left' | 'right';
+  /** Fixed viewport coordinates — used for right-click context menus. Overrides `align`. */
+  position?: { x: number; y: number };
 }
 
-export function Menu({ items, onClose, align = 'right' }: MenuProps) {
+export function Menu({ items, onClose, align = 'right', position }: MenuProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,15 +29,22 @@ export function Menu({ items, onClose, align = 'right' }: MenuProps) {
       if (event.key === 'Escape') onClose();
     }
     document.addEventListener('mousedown', handleClick);
+    document.addEventListener('contextmenu', handleClick);
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('contextmenu', handleClick);
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
 
+  const style = position
+    ? { position: 'fixed' as const, left: position.x, top: position.y }
+    : undefined;
+  const anchorClass = position ? '' : align === 'left' ? styles.left : styles.right;
+
   return (
-    <div ref={ref} className={[styles.menu, align === 'left' ? styles.left : styles.right].join(' ')} role="menu">
+    <div ref={ref} className={[styles.menu, anchorClass].filter(Boolean).join(' ')} style={style} role="menu">
       {items.map((item) => (
         <button
           key={item.id}
@@ -47,7 +57,8 @@ export function Menu({ items, onClose, align = 'right' }: MenuProps) {
           }}
         >
           {item.icon}
-          {item.label}
+          <span className={styles.itemLabel}>{item.label}</span>
+          {item.selected && <span className={styles.checkmark} aria-hidden>✓</span>}
         </button>
       ))}
     </div>

@@ -1,0 +1,25 @@
+.handle {
+  position: relative;
+  width: 6px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.handle:hover .grip,
+.handle:focus-visible .grip {
+  background: var(--color-common-brand-background);
+  opacity: 1;
+}
+
+.grip {
+  width: 2px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-lines-divider-bright);
+  opacity: 0;
+  transition: opacity 0.12s ease, background-color 0.12s ease;
+}

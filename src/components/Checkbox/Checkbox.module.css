@@ -38,6 +38,8 @@
   position: relative;
   color: transparent;
   transition: color 0.12s ease;
+  /* Purely visual overlay — clicks must pass through to the input beneath it. */
+  pointer-events: none;
 }
 
 .input:checked ~ .check {
@@ -57,4 +59,12 @@
   font-size: var(--font-size-s);
   line-height: var(--line-height-s);
   color: var(--color-common-contrast);
+}
+
+/* Same pattern as Button's mail-actions container: only takes effect when an
+   ancestor names itself "mail-list-header" and runs out of room. */
+@container mail-list-header (max-width: 340px) {
+  .label {
+    display: none;
+  }
 }

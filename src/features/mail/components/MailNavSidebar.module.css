@@ -9,7 +9,20 @@
   border-right: 1px solid var(--color-lines-divider);
 }
 
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xxs);
+}
+
+.collapseToggle {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
 .searchBlock {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-s);
@@ -63,6 +76,7 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-l);
@@ -81,6 +95,12 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+.favorites {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
 }
 
 .customFolders {
@@ -121,4 +141,55 @@
   gap: var(--spacing-xxs);
   padding-top: var(--spacing-s);
   border-top: 1px solid var(--color-lines-divider);
+}
+
+/* Collapsed state */
+.sidebarCollapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-m);
+  width: 56px;
+  flex-shrink: 0;
+  height: 100%;
+  padding: var(--spacing-xl) 0;
+  border-right: 1px solid var(--color-lines-divider);
+}
+
+.collapsedList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.collapsedItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-s);
+  color: var(--color-common-low-contrast);
+}
+
+.collapsedItem:hover {
+  background: var(--color-common-transparent);
+  color: var(--color-common-contrast);
+}
+
+.collapsedItemActive {
+  background: var(--color-sky-main);
+  color: var(--color-sky-accent);
+}
+
+.collapsedDot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-common-brand-background);
 }

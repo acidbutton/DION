@@ -22,10 +22,27 @@ export interface ThreadMessage {
   hasAttachment?: boolean;
 }
 
+export type AttachmentKind = 'pdf' | 'doc' | 'xls' | 'image' | 'other';
+
+export interface MailAttachment {
+  id: string;
+  name: string;
+  sizeKb: number;
+  kind: AttachmentKind;
+}
+
+export interface CategoryDef {
+  id: string;
+  name: string;
+  color: string;
+}
+
 export interface MailMessage {
   id: string;
   accountId: string;
   folderId: SystemFolderId | string;
+  /** Folder the message lived in before being moved to Trash, so it can be restored. */
+  previousFolderId?: string;
   senderName: string;
   senderEmail: string;
   subject: string;
@@ -34,8 +51,25 @@ export interface MailMessage {
   recipients: string[];
   date: Date;
   unread: boolean;
+  flagged?: boolean;
+  categoryIds?: string[];
   online?: boolean;
-  attachmentsCount?: number;
+  attachments?: MailAttachment[];
   threadCount?: number;
   thread?: ThreadMessage[];
+}
+
+export type SortKey = 'date-desc' | 'date-asc' | 'sender-asc' | 'subject-asc';
+export type FilterKey = 'all' | 'unread' | 'flagged' | 'attachments';
+export type ReadingPanePosition = 'right' | 'bottom' | 'hidden';
+
+export interface MessageInsight {
+  summary: string;
+  expectation: string;
+  actionItems: string[];
+  quickReplies: string[];
+  isEscalation: boolean;
+  isMeetingRequest: boolean;
+  isAwaitingReply: boolean;
+  hasTask: boolean;
 }

@@ -19,9 +19,15 @@
 .header {
   display: flex;
   align-items: center;
+  gap: var(--spacing-xs);
   height: 60px;
   padding: 0 var(--spacing-l);
   flex-shrink: 0;
+}
+
+.backButton {
+  flex-shrink: 0;
+  margin-left: calc(var(--spacing-s) * -1);
 }
 
 .title {
@@ -34,6 +40,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  min-width: 0;
 }
 
 .rowContainer {
@@ -43,8 +50,9 @@
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
-  gap: var(--spacing-l);
+  gap: var(--spacing-s) var(--spacing-l);
   padding: 8px 0;
 }
 
@@ -56,7 +64,7 @@
 }
 
 .titleBlock {
-  flex: 1;
+  flex: 1 1 200px;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -66,6 +74,7 @@
 
 .nameDate {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: var(--spacing-s);
 }
@@ -89,9 +98,11 @@
   gap: var(--spacing-xxs);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-s);
+  min-width: 0;
 }
 
 .toLabel {
+  flex-shrink: 0;
   color: var(--color-common-additional);
 }
 
@@ -100,6 +111,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .tagActions {
@@ -107,22 +119,53 @@
   align-items: center;
   gap: 2px;
   flex-shrink: 0;
+  margin-left: auto;
+}
+
+.menuAnchor {
+  position: relative;
+  display: flex;
 }
 
 .marks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
   padding-bottom: 8px;
+}
+
+.categoryChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 var(--spacing-xs);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.categoryDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
 }
 
 .tagButton {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xxs);
-  height: 18px;
+  height: 20px;
   padding: 0 var(--spacing-xs);
   border-radius: var(--radius-full);
   border: 1px dashed var(--color-lines-divider-bright);
   color: var(--color-common-low-contrast);
   font-size: var(--font-size-xs);
+  white-space: nowrap;
 }
 
 .tagButton:hover {
@@ -141,8 +184,54 @@
   white-space: pre-wrap;
 }
 
-.actions {
+.attachments {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s);
+  padding: 0 var(--spacing-l) var(--spacing-l);
+}
+
+.attachmentChip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-s);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--color-lines-divider-bright);
+  background: var(--color-elevation-0-main);
+  max-width: 240px;
+}
+
+.attachmentChip:hover {
+  border-color: var(--color-common-brand-background);
+}
+
+.attachmentIcon {
+  display: flex;
+  color: var(--color-common-low-contrast);
+  flex-shrink: 0;
+}
+
+.attachmentName {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.attachmentSize {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-additional);
+  flex-shrink: 0;
+}
+
+.actions {
+  container-type: inline-size;
+  container-name: mail-actions;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: var(--spacing-s);
   padding: 12px var(--spacing-l);
@@ -156,8 +245,9 @@
 
 .threadRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--spacing-m);
+  gap: var(--spacing-s) var(--spacing-m);
   padding: 12px var(--spacing-l);
   border-top: 1px solid var(--color-lines-divider);
   text-align: left;
@@ -190,7 +280,7 @@
 }
 
 .threadPreview {
-  flex: 1;
+  flex: 1 1 120px;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;

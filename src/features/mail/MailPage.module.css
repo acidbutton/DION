@@ -1,8 +1,20 @@
 .page {
+  position: relative;
   display: flex;
   width: 100%;
   height: 100%;
   min-width: 0;
+  overflow: hidden;
+}
+
+.pageMobile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .workArea {
@@ -15,4 +27,89 @@
   border-top-left-radius: var(--radius-l);
   border-top-right-radius: var(--radius-l);
   overflow: hidden;
+}
+
+.listColumn {
+  flex-shrink: 0;
+  min-width: 0;
+  height: 100%;
+}
+
+.hiddenPaneNotice {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxl);
+  text-align: center;
+  color: var(--color-common-low-contrast);
+  font-size: var(--font-size-s);
+}
+
+.stackedArea {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}
+
+.stackedList {
+  flex: 0 0 45%;
+  min-height: 200px;
+  border-bottom: 1px solid var(--color-lines-divider);
+  overflow: hidden;
+  display: flex;
+}
+
+.stackedReading {
+  flex: 1;
+  min-height: 200px;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Compact / mobile stack (<=760px, see MOBILE_QUERY) */
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  height: 48px;
+  padding: 0 var(--spacing-m);
+  border-bottom: 1px solid var(--color-lines-divider);
+  flex-shrink: 0;
+}
+
+.mobileTitle {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileBody {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-elevation-1-main);
+}
+
+.mobileDrawerOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 22, 30, 0.32);
+  z-index: 30;
+  display: flex;
+}
+
+.mobileDrawer {
+  width: min(280px, 84vw);
+  height: 100%;
+  background: var(--color-elevation-0-main);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+  display: flex;
 }

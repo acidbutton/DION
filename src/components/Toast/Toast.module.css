@@ -1,0 +1,42 @@
+.host {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+  z-index: 200;
+  align-items: center;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-m);
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--radius-m);
+  background: var(--color-common-contrast);
+  color: var(--color-common-brand-contrast);
+  box-shadow: var(--shadow-popover);
+  font-size: var(--font-size-s);
+  pointer-events: auto;
+  max-width: min(420px, calc(100vw - 32px));
+}
+
+.message {
+  flex: 1;
+  min-width: 0;
+}
+
+.action {
+  flex-shrink: 0;
+  color: #5b9dff;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.action:hover {
+  color: #8fbaff;
+}

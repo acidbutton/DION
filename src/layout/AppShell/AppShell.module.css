@@ -2,7 +2,7 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  min-width: 960px;
+  min-width: 320px;
   overflow: hidden;
   background: var(--color-rail-bg);
 }
@@ -15,10 +15,4 @@
   background: var(--color-elevation-0-main);
   border-top-left-radius: var(--radius-xl);
   overflow: hidden;
-}
-
-@media (max-width: 1024px) {
-  .shell {
-    min-width: 720px;
-  }
 }

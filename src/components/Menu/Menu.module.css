@@ -3,6 +3,9 @@
   top: calc(100% + 4px);
   z-index: 50;
   min-width: 180px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
   padding: var(--spacing-xxs);
   background: var(--color-elevation-0-main);
   border-radius: var(--radius-m);
@@ -29,10 +32,21 @@
   text-align: left;
   font-size: var(--font-size-s);
   color: var(--color-common-contrast);
+  white-space: nowrap;
 }
 
 .item:hover {
   background: var(--color-common-transparent);
+}
+
+.itemLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.checkmark {
+  color: var(--color-common-brand-background);
+  flex-shrink: 0;
 }
 
 .destructive {

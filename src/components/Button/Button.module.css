@@ -74,3 +74,22 @@
 .ghost:hover:not(:disabled) {
   background: var(--color-common-transparent);
 }
+
+/* When nested inside a named CSS container that runs out of inline space
+   (e.g. the reading pane's action row), buttons drop their text label and
+   become icon-only while staying tappable and keeping their accessible name
+   via aria-label. Has no effect anywhere without such a container ancestor. */
+@container mail-actions (max-width: 480px) {
+  .label {
+    display: none;
+  }
+
+  .m {
+    padding: 0 8px;
+  }
+
+  .s {
+    padding: 0 6px;
+  }
+}
+
