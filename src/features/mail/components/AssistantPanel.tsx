@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Check, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
+import { CaretDown as ChevronDown, CaretUp as ChevronUp, Check, Sparkle as Sparkles } from '@phosphor-icons/react';
 import { Button } from '../../../components';
 import type { MailMessage } from '../types';
 import { analyzeMessage } from '../utils/aiAssistant';
@@ -89,7 +89,7 @@ export function AssistantCard({ message, onQuickReply }: AssistantCardProps) {
                         }
                       >
                         <span className={[styles.checkbox, done ? styles.checkboxDone : ''].join(' ')}>
-                          {done && <Check size={12} strokeWidth={3} />}
+                          {done && <Check size={12} weight="bold" />}
                         </span>
                         <span className={[styles.checkText, done ? styles.checkTextDone : ''].join(' ')}>{item}</span>
                       </button>

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, X } from 'lucide-react';
+import { CaretDown as ChevronDown, X } from '@phosphor-icons/react';
 import { Menu, Modal } from '../../components';
 import { BoardsNavSidebar, type BoardsView } from './components/BoardsNavSidebar';
 import { BoardCard } from './components/BoardCard';

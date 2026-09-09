@@ -1,5 +1,13 @@
 import { useRef, useState, type ReactNode } from 'react';
-import { AlertOctagon, ArrowDown, ChevronDown, Clock, Paperclip, Trash2, X } from 'lucide-react';
+import {
+  ArrowDown,
+  CaretDown as ChevronDown,
+  Clock,
+  Paperclip,
+  Trash as Trash2,
+  WarningOctagon as AlertOctagon,
+  X,
+} from '@phosphor-icons/react';
 import { Button, IconButton, Menu, Modal, RichTextEditor, type MenuItem } from '../../../components';
 import type { AttachmentKind, ComposeDraft, Importance, MailAttachment } from '../types';
 import styles from './ComposeModal.module.css';

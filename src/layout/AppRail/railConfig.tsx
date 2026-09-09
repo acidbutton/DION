@@ -1,5 +1,14 @@
 import type { ReactNode } from 'react';
-import { Calendar, Contact, Folder, Home, Mail, MessageSquare, Presentation, Video } from 'lucide-react';
+import {
+  AddressBook as Contact,
+  Calendar,
+  ChatCircleText as MessageSquare,
+  Envelope as Mail,
+  Folder,
+  House as Home,
+  Presentation,
+  VideoCamera as Video,
+} from '@phosphor-icons/react';
 
 export interface RailItem {
   id: string;

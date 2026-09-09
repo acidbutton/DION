@@ -1,4 +1,11 @@
-import { Copy, Folder, LayoutGrid, Plus, StickyNote, Trash2 } from 'lucide-react';
+import {
+  Copy,
+  Folder,
+  Note as StickyNote,
+  Plus,
+  SquaresFour as LayoutGrid,
+  Trash as Trash2,
+} from '@phosphor-icons/react';
 import { Button, IconButton, NavigationItem, TextButton } from '../../../components';
 import type { BoardFolder } from '../types';
 import styles from './BoardsNavSidebar.module.css';

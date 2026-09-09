@@ -1,29 +1,29 @@
 import { useState } from 'react';
 import {
+  ArrowBendDoubleUpLeft as ReplyAll,
+  ArrowBendUpLeft as Reply,
+  ArrowBendUpRight as Forward,
+  ArrowCounterClockwise as RotateCcw,
   ArrowLeft,
   Calendar,
-  ChevronDown,
-  ChevronRight,
-  ChevronsDown,
-  ChevronsUp,
+  CaretDoubleDown as ChevronsDown,
+  CaretDoubleUp as ChevronsUp,
+  CaretDown as ChevronDown,
+  CaretRight as ChevronRight,
   Clock,
+  DotsThree as MoreHorizontal,
+  EnvelopeOpen as MailOpen,
   File,
-  FileSpreadsheet,
   FileText,
+  FileXls as FileSpreadsheet,
   Flag,
-  Forward,
   Image as ImageIcon,
-  MailOpen,
-  MoreHorizontal,
   Paperclip,
+  PaperPlaneTilt as Send,
   Plus,
-  Reply,
-  ReplyAll,
-  RotateCcw,
-  Send,
   Tag,
-  Trash2,
-} from 'lucide-react';
+  Trash as Trash2,
+} from '@phosphor-icons/react';
 import { Avatar, Button, IconButton, Menu, type MenuItem } from '../../../components';
 import { CATEGORIES } from '../data/categories';
 import type { AttachmentKind, MailAttachment, MailMessage } from '../types';

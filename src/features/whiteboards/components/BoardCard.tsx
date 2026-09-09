@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { Copy, MoreVertical, Pencil, Trash2 } from 'lucide-react';
+import {
+  Copy,
+  DotsThreeVertical as MoreVertical,
+  PencilSimple as Pencil,
+  Trash as Trash2,
+} from '@phosphor-icons/react';
 import { IconButton, Menu } from '../../../components';
 import type { Board } from '../types';
 import { formatShortDate } from '../utils/formatDate';

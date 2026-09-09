@@ -1,5 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, CalendarClock, Clock, ListChecks, RefreshCw, Sparkles, X } from 'lucide-react';
+import {
+  ArrowsClockwise as RefreshCw,
+  CalendarCheck as CalendarClock,
+  Clock,
+  ListChecks,
+  Sparkle as Sparkles,
+  Warning as AlertTriangle,
+  X,
+} from '@phosphor-icons/react';
 import { Avatar, IconButton } from '../../../components';
 import type { MailMessage } from '../types';
 import { analyzeMailbox } from '../utils/aiAssistant';

@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import {
-  ArrowDownAZ,
+  ArrowsClockwise as RefreshCw,
+  ArrowCounterClockwise as RotateCcw,
+  ArrowSquareIn as FolderInput,
+  Envelope as MailGlyph,
+  EnvelopeOpen as MailOpen,
   Flag,
-  FolderInput,
-  ListFilter,
-  Mail as MailIconLucide,
-  MailOpen,
+  FunnelSimple as ListFilter,
   Paperclip,
-  PanelRight,
-  RefreshCw,
-  RotateCcw,
-  Send,
-  Sparkles,
+  PaperPlaneTilt as Send,
+  SidebarSimple as PanelRight,
+  SortAscending as ArrowDownAZ,
+  Sparkle as Sparkles,
   Tag,
-  Trash2,
-} from 'lucide-react';
+  Trash as Trash2,
+} from '@phosphor-icons/react';
 import { Avatar, Checkbox, IconButton, Menu, type MenuItem } from '../../../components';
 import { CATEGORIES } from '../data/categories';
 import type { FilterKey, MailMessage, ReadingPanePosition, SortKey } from '../types';
@@ -339,7 +339,7 @@ function BulkBar({
       </div>
       <div className={styles.headerRight}>
         <IconButton icon={<MailOpen size={16} />} aria-label="Пометить как прочитанные" size="s" onClick={onMarkRead} />
-        <IconButton icon={<MailIconLucide size={16} />} aria-label="Пометить как непрочитанные" size="s" onClick={onMarkUnread} />
+        <IconButton icon={<MailGlyph size={16} />} aria-label="Пометить как непрочитанные" size="s" onClick={onMarkUnread} />
         <IconButton icon={<Flag size={16} />} aria-label="Отметить флажком" size="s" onClick={onFlag} />
         {!isTrashFolder && (
           <div className={styles.menuAnchor}>

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronLeft, ChevronRight, Menu as MenuIcon } from 'lucide-react';
+import { CaretLeft as ChevronLeft, CaretRight as ChevronRight, List as MenuIcon } from '@phosphor-icons/react';
 import { Button, IconButton, ToastProvider, useToast } from '../../components';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { CalendarNavSidebar } from './components/CalendarNavSidebar';

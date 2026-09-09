@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  AlignCenter,
-  AlignLeft,
-  AlignRight,
-  Bold,
-  Italic,
-  Link as LinkIcon,
-  List,
-  ListOrdered,
-  Paperclip,
-  Underline,
+  TextAlignCenter as AlignCenter,
+  TextAlignLeft as AlignLeft,
+  TextAlignRight as AlignRight,
+  TextB as Bold,
   Eraser,
-} from 'lucide-react';
+  TextItalic as Italic,
+  LinkSimple as LinkIcon,
+  ListBullets as List,
+  ListNumbers as ListOrdered,
+  Paperclip,
+  TextUnderline as Underline,
+} from '@phosphor-icons/react';
 import { IconButton } from '../IconButton/IconButton';
 import styles from './RichTextEditor.module.css';
 

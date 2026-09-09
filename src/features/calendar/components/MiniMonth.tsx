@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { CaretLeft as ChevronLeft, CaretRight as ChevronRight } from '@phosphor-icons/react';
 import { IconButton } from '../../../components';
 import { addMonths, formatMonthYear, getMonthGrid, isSameDay } from '../utils/date';
 import styles from './MiniMonth.module.css';

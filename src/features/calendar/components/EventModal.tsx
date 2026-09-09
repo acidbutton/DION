@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { Bell, CalendarDays, ChevronDown, MapPin, Repeat, Trash2, Users } from 'lucide-react';
+import {
+  Bell,
+  CalendarBlank as CalendarDays,
+  CaretDown as ChevronDown,
+  MapPin,
+  Repeat,
+  Trash as Trash2,
+  Users,
+} from '@phosphor-icons/react';
 import { Button, Checkbox, IconButton, Menu, Modal, type MenuItem } from '../../../components';
 import { CALENDARS } from '../data/calendars';
 import type { EventDraft, EventRecurrence, ReminderMinutes } from '../types';

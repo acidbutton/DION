@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react';
+import { Plus } from '@phosphor-icons/react';
 import { Button, Checkbox } from '../../../components';
 import type { CalendarDef } from '../types';
 import { MiniMonth } from './MiniMonth';

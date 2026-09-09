@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Menu as MenuIcon } from 'lucide-react';
+import { List as MenuIcon } from '@phosphor-icons/react';
 import { IconButton, Modal, ResizeHandle, ToastProvider, useToast } from '../../components';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { MailNavSidebar } from './components/MailNavSidebar';

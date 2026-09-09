@@ -1,20 +1,20 @@
 import { useState, type ReactNode } from 'react';
 import {
-  AlertTriangle,
-  AtSign,
-  ChevronDown,
-  ChevronsLeft,
-  ChevronsRight,
+  At as AtSign,
+  CaretDoubleLeft as ChevronsLeft,
+  CaretDoubleRight as ChevronsRight,
+  CaretDown as ChevronDown,
   Clock,
+  Envelope as MailIcon,
   Folder,
-  FolderClosed,
-  Mail as MailIcon,
-  Search,
-  Send,
-  SquarePen,
+  FolderSimple as FolderClosed,
+  MagnifyingGlass as Search,
+  NotePencil as SquarePen,
+  PaperPlaneTilt as Send,
   Star,
-  Trash2,
-} from 'lucide-react';
+  Trash as Trash2,
+  Warning as AlertTriangle,
+} from '@phosphor-icons/react';
 import { Badge, IconButton, Input, NavigationItem, TextButton } from '../../../components';
 import type { CustomFolder, MailAccount, SystemFolderId } from '../types';
 import styles from './MailNavSidebar.module.css';
