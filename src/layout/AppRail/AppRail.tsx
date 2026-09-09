@@ -26,8 +26,10 @@ export function AppRail() {
         <div className={styles.logoRow}>
           <div className={styles.logo} aria-hidden>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M2 6.5L12 2L22 6.5V9L12 4.5L4 8.2V17L12 21L20 17V11L22 10V18L12 22.5L2 18V6.5Z" fill="#14151A" />
-              <path d="M8 9.3L12 7.5L16 9.3V15L12 16.8L8 15V9.3Z" fill="#14151A" />
+              <path
+                d="M7 3H17C17 3 13 7 13 12C13 17 17 21 17 21H7C7 21 11 17 11 12C11 7 7 3 7 3Z"
+                fill="#14151A"
+              />
             </svg>
           </div>
           <button type="button" className={styles.collapseButton} aria-label="Свернуть панель" onClick={() => setCollapsed(true)}>
