@@ -24,7 +24,7 @@ import { Avatar, Button, IconButton, Menu, type MenuItem } from '../../../compon
 import { CATEGORIES } from '../data/categories';
 import type { AttachmentKind, MailAttachment, MailMessage } from '../types';
 import { formatFullDate } from '../utils/date';
-import { AssistantPanel } from './AssistantPanel';
+import { AssistantCard, AssistantTrigger } from './AssistantPanel';
 import type { MoveTarget } from './MailList';
 import styles from './MailReadingPane.module.css';
 
@@ -77,6 +77,7 @@ export function MailReadingPane({
 }: MailReadingPaneProps) {
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
+  const [assistantOpen, setAssistantOpen] = useState(false);
 
   if (!message) {
     return (
@@ -189,6 +190,46 @@ export function MailReadingPane({
         </div>
       </div>
 
+      <div className={styles.toolRow}>
+        <AssistantTrigger open={assistantOpen} onToggle={() => setAssistantOpen((v) => !v)} />
+        <div className={styles.actions}>
+          <div className={styles.actionsInner}>
+            <Button variant="secondary" leadingIcon={<Calendar size={16} />} aria-label="Создать событие" title="Создать событие">
+              Создать событие
+            </Button>
+            <Button
+              variant="secondary"
+              leadingIcon={<Forward size={16} />}
+              aria-label="Переслать"
+              title="Переслать"
+              onClick={() => onReply(message, 'forward')}
+            >
+              Переслать
+            </Button>
+            <Button
+              variant="secondary"
+              leadingIcon={<ReplyAll size={16} />}
+              aria-label="Ответить всем"
+              title="Ответить всем"
+              onClick={() => onReply(message, 'replyAll')}
+            >
+              Ответить всем
+            </Button>
+            <Button
+              variant="primary"
+              leadingIcon={<Reply size={16} />}
+              aria-label="Ответить"
+              title="Ответить"
+              onClick={() => onReply(message, 'reply')}
+            >
+              Ответить
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {assistantOpen && <AssistantCard message={message} onQuickReply={(text) => onQuickReply(message, text)} />}
+
       <div className={styles.message}>
         <p className={styles.body}>{message.body}</p>
       </div>
@@ -204,41 +245,6 @@ export function MailReadingPane({
           ))}
         </div>
       )}
-
-      <AssistantPanel message={message} onQuickReply={(text) => onQuickReply(message, text)} />
-
-      <div className={styles.actions}>
-        <Button variant="secondary" leadingIcon={<Calendar size={16} />} aria-label="Создать событие" title="Создать событие">
-          Создать событие
-        </Button>
-        <Button
-          variant="secondary"
-          leadingIcon={<Forward size={16} />}
-          aria-label="Переслать"
-          title="Переслать"
-          onClick={() => onReply(message, 'forward')}
-        >
-          Переслать
-        </Button>
-        <Button
-          variant="secondary"
-          leadingIcon={<ReplyAll size={16} />}
-          aria-label="Ответить всем"
-          title="Ответить всем"
-          onClick={() => onReply(message, 'replyAll')}
-        >
-          Ответить всем
-        </Button>
-        <Button
-          variant="primary"
-          leadingIcon={<Reply size={16} />}
-          aria-label="Ответить"
-          title="Ответить"
-          onClick={() => onReply(message, 'reply')}
-        >
-          Ответить
-        </Button>
-      </div>
 
       {message.thread && message.thread.length > 0 && (
         <div className={styles.thread}>

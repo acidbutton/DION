@@ -1,13 +1,22 @@
-.wrapper {
-  padding: 0 var(--spacing-l);
+/* Purple is reserved for this AI surface only — every other button/accent in
+   the app stays on the brand blue, so this tint alone signals "AI-assisted". */
+.trigger {
+  background: rgba(122, 92, 255, 0.08) !important;
+  border-color: rgba(122, 92, 255, 0.4) !important;
+  color: #7a5cff !important;
+}
+
+.trigger:hover {
+  background: rgba(122, 92, 255, 0.16) !important;
+  border-color: #7a5cff !important;
 }
 
 .card {
-  margin-top: var(--spacing-s);
+  margin: var(--spacing-s) var(--spacing-l) 0;
   padding: var(--spacing-m);
   border-radius: var(--radius-m);
-  background: var(--color-sky-main);
-  border: 1px solid rgba(0, 98, 255, 0.16);
+  background: rgba(122, 92, 255, 0.06);
+  border: 1px solid rgba(122, 92, 255, 0.18);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-m);
@@ -23,7 +32,7 @@
 .loadingBar {
   height: 10px;
   border-radius: var(--radius-full);
-  background: linear-gradient(90deg, rgba(0, 98, 255, 0.12) 25%, rgba(0, 98, 255, 0.22) 37%, rgba(0, 98, 255, 0.12) 63%);
+  background: linear-gradient(90deg, rgba(122, 92, 255, 0.14) 25%, rgba(122, 92, 255, 0.26) 37%, rgba(122, 92, 255, 0.14) 63%);
   background-size: 400% 100%;
   animation: shimmer 1.4s ease infinite;
 }
@@ -53,7 +62,7 @@
   font-size: var(--font-size-xs);
   line-height: var(--line-height-s);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-sky-contrast);
+  color: #5433c9;
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-caption-caps);
 }

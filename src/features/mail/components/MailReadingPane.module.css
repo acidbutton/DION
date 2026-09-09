@@ -227,15 +227,37 @@
   flex-shrink: 0;
 }
 
+.toolRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+  padding: 4px var(--spacing-l) var(--spacing-m);
+  flex-shrink: 0;
+}
+
+/* .actions is the flex item that grows to fill the row. It gets a floor
+   (min-width) roughly matching four icon-only buttons — without it, a
+   plain `flex-shrink` would rather squeeze this block down to a sliver
+   (wrapping each button onto its own line) than wrap the whole block onto
+   a fresh line below the assistant trigger, which is what should happen
+   once the row genuinely runs out of room. */
 .actions {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 160px;
+  min-width: 160px;
+}
+
+.actionsInner {
   container-type: inline-size;
   container-name: mail-actions;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
   gap: var(--spacing-s);
-  padding: 12px var(--spacing-l);
-  flex-shrink: 0;
+  width: 100%;
 }
 
 .thread {

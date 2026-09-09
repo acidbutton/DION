@@ -119,7 +119,6 @@ export function MailNavSidebar({
               value={searchQuery}
               onChange={(event) => onSearchChange(event.target.value)}
             />
-            <IconButton icon={<SquarePen size={16} />} aria-label="Написать в новом окне" variant="subtle" />
           </div>
           <div className={styles.composeRow}>
             <button type="button" className={styles.composeButton} onClick={onCompose}>

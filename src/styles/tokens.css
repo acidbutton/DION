@@ -31,14 +31,6 @@
   --color-sky-low-contrast: #003b99;
   --color-sky-error-content: #f94c4c;
 
-  /* Color / rail (icon rail is rendered dark in the source file;
-     reused from color/common/contrast rather than a new hardcoded value) */
-  --color-rail-bg: var(--color-common-contrast);
-  --color-rail-icon: rgba(250, 252, 255, 0.72);
-  --color-rail-icon-hover: rgba(250, 252, 255, 0.92);
-  --color-rail-item-active-bg: rgba(250, 252, 255, 0.12);
-  --color-rail-item-icon-active: #5b9dff;
-
   /* Radius */
   --radius-none: 0px;
   --radius-xxs: 4px;

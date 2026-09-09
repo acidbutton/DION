@@ -6,21 +6,55 @@
   width: 48px;
   flex-shrink: 0;
   height: 100%;
-  padding: 20px 0 12px;
-  background: var(--color-rail-bg);
+  padding: 16px 0 12px;
+  background: var(--color-elevation-0-main);
+  border-right: 1px solid var(--color-lines-divider);
 }
 
 .top {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 32px;
+  width: 100%;
+}
+
+.logoRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .logo {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.collapseButton {
+  position: absolute;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-elevation-0-main);
+  border: 1px solid var(--color-lines-divider-bright);
+  color: var(--color-common-low-contrast);
+  opacity: 0;
+  transition: opacity 0.12s ease, color 0.12s ease;
+}
+
+.rail:hover .collapseButton {
+  opacity: 1;
+}
+
+.collapseButton:hover {
+  color: var(--color-common-contrast);
 }
 
 .items {
@@ -37,22 +71,56 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-s);
-  color: var(--color-rail-icon);
+  color: var(--color-common-low-contrast);
   transition: background-color 0.12s ease, color 0.12s ease;
 }
 
 .item:hover {
-  color: var(--color-rail-icon-hover);
-  background: rgba(250, 252, 255, 0.08);
+  color: var(--color-common-contrast);
+  background: var(--color-common-transparent);
 }
 
 .active {
-  background: var(--color-rail-item-active-bg);
-  color: var(--color-rail-item-icon-active);
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+}
+
+.active:hover {
+  color: var(--color-common-brand-contrast);
+  background: var(--color-common-brand-background);
 }
 
 .bottom {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Collapsed state */
+.railCollapsed {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 12px;
+  flex-shrink: 0;
+  height: 100%;
+  padding-top: 16px;
+  background: var(--color-elevation-0-main);
+  border-right: 1px solid var(--color-lines-divider);
+}
+
+.expandButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-elevation-0-main);
+  border: 1px solid var(--color-lines-divider-bright);
+  color: var(--color-common-low-contrast);
+}
+
+.expandButton:hover {
+  color: var(--color-common-contrast);
 }
