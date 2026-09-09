@@ -4,6 +4,9 @@ import {
   Calendar,
   ChevronDown,
   ChevronRight,
+  ChevronsDown,
+  ChevronsUp,
+  Clock,
   File,
   FileSpreadsheet,
   FileText,
@@ -17,6 +20,7 @@ import {
   Reply,
   ReplyAll,
   RotateCcw,
+  Send,
   Tag,
   Trash2,
 } from 'lucide-react';
@@ -38,7 +42,9 @@ export interface MailReadingPaneProps {
   onMoveToFolder: (ids: string[], folderId: string) => void;
   onDeleteForever: (ids: string[]) => void;
   onRestore: (ids: string[]) => void;
+  onSendNow: (ids: string[]) => void;
   isTrashFolder: boolean;
+  isOutboxFolder: boolean;
   moveTargets: MoveTarget[];
   onAttachmentClick: (attachment: MailAttachment) => void;
   onBack?: () => void;
@@ -59,6 +65,10 @@ function formatSize(sizeKb: number): string {
   return `${sizeKb} КБ`;
 }
 
+function formatScheduled(date: Date): string {
+  return date.toLocaleString('ru-RU', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+}
+
 export function MailReadingPane({
   message,
   onReply,
@@ -69,7 +79,9 @@ export function MailReadingPane({
   onMoveToFolder,
   onDeleteForever,
   onRestore,
+  onSendNow,
   isTrashFolder,
+  isOutboxFolder,
   moveTargets,
   onAttachmentClick,
   onBack,
@@ -78,6 +90,7 @@ export function MailReadingPane({
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
   const [assistantOpen, setAssistantOpen] = useState(false);
+  const [expandedThreadIds, setExpandedThreadIds] = useState<Set<string>>(new Set());
 
   if (!message) {
     return (
@@ -89,15 +102,32 @@ export function MailReadingPane({
 
   const ids = [message.id];
   const assignedCategories = CATEGORIES.filter((category) => message.categoryIds?.includes(category.id));
+  const allThreadExpanded = Boolean(message.thread?.length) && message.thread!.every((entry) => expandedThreadIds.has(entry.id));
 
-  const moreItems: MenuItem[] = [
-    {
-      id: 'read',
-      label: message.unread ? 'Пометить как прочитанное' : 'Пометить как непрочитанное',
-      icon: <MailOpen size={14} />,
-      onSelect: () => onMarkRead(ids, !message.unread),
-    },
-  ];
+  function toggleThreadEntry(id: string) {
+    setExpandedThreadIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  function toggleAllThread() {
+    if (!message?.thread) return;
+    setExpandedThreadIds(allThreadExpanded ? new Set() : new Set(message.thread.map((entry) => entry.id)));
+  }
+
+  const moreItems: MenuItem[] = [];
+  if (isOutboxFolder) {
+    moreItems.push({ id: 'send-now', label: 'Отправить сейчас', icon: <Send size={14} />, onSelect: () => onSendNow(ids) });
+  }
+  moreItems.push({
+    id: 'read',
+    label: message.unread ? 'Пометить как прочитанное' : 'Пометить как непрочитанное',
+    icon: <MailOpen size={14} />,
+    onSelect: () => onMarkRead(ids, !message.unread),
+  });
   if (isTrashFolder) {
     moreItems.push(
       { id: 'restore', label: 'Восстановить', icon: <RotateCcw size={14} />, onSelect: () => onRestore(ids) },
@@ -125,6 +155,16 @@ export function MailReadingPane({
         </div>
       )}
 
+      {message.scheduledAt && (
+        <div className={styles.scheduledBanner}>
+          <Clock size={14} />
+          <span>Будет отправлено {formatScheduled(message.scheduledAt)}</span>
+          <button type="button" className={styles.scheduledBannerAction} onClick={() => onSendNow(ids)}>
+            Отправить сейчас
+          </button>
+        </div>
+      )}
+
       <div className={styles.rowContainer}>
         <div className={styles.row}>
           <div className={styles.rowInner}>
@@ -140,6 +180,12 @@ export function MailReadingPane({
               <span className={styles.toLabel}>Кому:</span>
               <span className={styles.recipients}>{message.recipients.join(', ')}</span>
             </div>
+            {Boolean(message.cc?.length) && (
+              <div className={styles.recipientDetails}>
+                <span className={styles.toLabel}>Копия:</span>
+                <span className={styles.recipients}>{message.cc!.join(', ')}</span>
+              </div>
+            )}
           </div>
           <div className={styles.tagActions}>
             <IconButton
@@ -231,7 +277,11 @@ export function MailReadingPane({
       {assistantOpen && <AssistantCard message={message} onQuickReply={(text) => onQuickReply(message, text)} />}
 
       <div className={styles.message}>
-        <p className={styles.body}>{message.body}</p>
+        {message.bodyHtml ? (
+          <div className={styles.bodyHtml} dangerouslySetInnerHTML={{ __html: message.bodyHtml }} />
+        ) : (
+          <p className={styles.body}>{message.body}</p>
+        )}
       </div>
 
       {Boolean(message.attachments?.length) && (
@@ -248,8 +298,26 @@ export function MailReadingPane({
 
       {message.thread && message.thread.length > 0 && (
         <div className={styles.thread}>
+          <div className={styles.threadHeader}>
+            <span className={styles.threadHeaderLabel}>
+              Предыдущие сообщения: {message.thread.length}
+            </span>
+            <button type="button" className={styles.threadToggleAll} onClick={toggleAllThread}>
+              {allThreadExpanded ? <ChevronsUp size={14} /> : <ChevronsDown size={14} />}
+              {allThreadExpanded ? 'Свернуть всё' : 'Развернуть всё'}
+            </button>
+          </div>
           {message.thread.map((entry) => (
-            <ThreadRow key={entry.id} senderName={entry.senderName} preview={entry.preview} date={entry.date} hasAttachment={entry.hasAttachment} />
+            <ThreadRow
+              key={entry.id}
+              senderName={entry.senderName}
+              preview={entry.preview}
+              body={entry.body}
+              date={entry.date}
+              hasAttachment={entry.hasAttachment}
+              expanded={expandedThreadIds.has(entry.id)}
+              onToggle={() => toggleThreadEntry(entry.id)}
+            />
           ))}
         </div>
       )}
@@ -260,29 +328,40 @@ export function MailReadingPane({
 function ThreadRow({
   senderName,
   preview,
+  body,
   date,
   hasAttachment,
+  expanded,
+  onToggle,
 }: {
   senderName: string;
   preview: string;
+  body: string;
   date: string;
   hasAttachment?: boolean;
+  expanded: boolean;
+  onToggle: () => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
-
   return (
-    <button type="button" className={styles.threadRow} onClick={() => setExpanded((value) => !value)}>
-      <ChevronRight
-        size={16}
-        className={styles.threadChevron}
-        style={{ transform: expanded ? 'rotate(90deg)' : undefined }}
-      />
-      <span className={styles.threadDot} aria-hidden />
-      <Avatar name={senderName} size={32} />
-      <span className={styles.threadSender}>{senderName}</span>
-      <span className={styles.threadPreview}>{preview}</span>
-      {hasAttachment && <Paperclip size={16} className={styles.threadIcon} />}
-      <span className={styles.threadDate}>{date}</span>
-    </button>
+    <div className={styles.threadEntry}>
+      <button type="button" className={styles.threadRow} onClick={onToggle} aria-expanded={expanded}>
+        <ChevronRight
+          size={16}
+          className={styles.threadChevron}
+          style={{ transform: expanded ? 'rotate(90deg)' : undefined }}
+        />
+        <span className={styles.threadDot} aria-hidden />
+        <Avatar name={senderName} size={32} />
+        <span className={styles.threadSender}>{senderName}</span>
+        <span className={styles.threadPreview}>{preview}</span>
+        {hasAttachment && <Paperclip size={16} className={styles.threadIcon} />}
+        <span className={styles.threadDate}>{date}</span>
+      </button>
+      {expanded && (
+        <div className={styles.threadBody}>
+          <p>{body}</p>
+        </div>
+      )}
+    </div>
   );
 }

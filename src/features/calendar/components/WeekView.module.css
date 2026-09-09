@@ -1,0 +1,154 @@
+.wrapper {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerRow,
+.allDayRow {
+  display: grid;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-lines-divider);
+}
+
+.headerGutter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: var(--spacing-xs);
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-additional);
+}
+
+.headerCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--spacing-s) 0;
+  border-left: 1px solid var(--color-lines-divider);
+}
+
+.headerWeekday {
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-additional);
+  text-transform: uppercase;
+}
+
+.headerDate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-common-contrast);
+}
+
+.headerDateToday {
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+}
+
+.allDayCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px;
+  border-left: 1px solid var(--color-lines-divider);
+  min-height: 24px;
+}
+
+.allDayChip {
+  display: block;
+  width: 100%;
+  padding: 2px 6px;
+  border-radius: var(--radius-xxs);
+  background: color-mix(in srgb, var(--chip-color) 14%, white);
+  border-left: 3px solid var(--chip-color);
+  font-size: var(--font-size-xs);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.timeGrid {
+  display: grid;
+}
+
+.gutterColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.hourLabel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-right: var(--spacing-xs);
+  transform: translateY(-6px);
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-additional);
+}
+
+.dayColumn {
+  position: relative;
+  border-left: 1px solid var(--color-lines-divider);
+}
+
+.hourSlot {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--color-lines-divider);
+  text-align: left;
+}
+
+.hourSlot:hover {
+  background: var(--color-common-transparent);
+}
+
+.timedChip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 2px 6px;
+  border-radius: var(--radius-xxs);
+  background: color-mix(in srgb, var(--chip-color) 16%, white);
+  border-left: 3px solid var(--chip-color);
+  overflow: hidden;
+  text-align: left;
+  z-index: 1;
+}
+
+.timedChip:hover {
+  background: color-mix(in srgb, var(--chip-color) 28%, white);
+  z-index: 2;
+}
+
+.timedTitle {
+  font-size: var(--font-size-xxs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timedTime {
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-low-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

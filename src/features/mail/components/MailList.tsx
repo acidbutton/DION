@@ -10,6 +10,7 @@ import {
   PanelRight,
   RefreshCw,
   RotateCcw,
+  Send,
   Sparkles,
   Tag,
   Trash2,
@@ -44,7 +45,9 @@ export interface MailListProps {
   onMoveToFolder: (ids: string[], folderId: string) => void;
   onDeleteForever: (ids: string[]) => void;
   onRestore: (ids: string[]) => void;
+  onSendNow: (ids: string[]) => void;
   isTrashFolder: boolean;
+  isOutboxFolder: boolean;
   moveTargets: MoveTarget[];
   onOpenAssistant: () => void;
   readingPanePosition: ReadingPanePosition;
@@ -106,7 +109,9 @@ export function MailList({
   onMoveToFolder,
   onDeleteForever,
   onRestore,
+  onSendNow,
   isTrashFolder,
+  isOutboxFolder,
   moveTargets,
   onOpenAssistant,
   readingPanePosition,
@@ -123,7 +128,11 @@ export function MailList({
 
   function buildContextMenuItems(message: MailMessage): MenuItem[] {
     const ids = [message.id];
-    const items: MenuItem[] = [
+    const items: MenuItem[] = [];
+    if (isOutboxFolder) {
+      items.push({ id: 'send-now', label: 'Отправить сейчас', icon: <Send size={14} />, onSelect: () => onSendNow(ids) });
+    }
+    items.push(
       { id: 'reply', label: 'Ответить', onSelect: () => onReply(message, 'reply') },
       { id: 'replyAll', label: 'Ответить всем', onSelect: () => onReply(message, 'replyAll') },
       { id: 'forward', label: 'Переслать', onSelect: () => onReply(message, 'forward') },
@@ -144,7 +153,7 @@ export function MailList({
         icon: <span className={styles.categoryDot} style={{ backgroundColor: category.color }} aria-hidden />,
         onSelect: () => onToggleCategory(ids, category.id),
       })),
-    ];
+    );
 
     if (isTrashFolder) {
       items.push(
@@ -391,16 +400,11 @@ function MailListItem({
     .filter(Boolean)
     .join(' ');
 
-  const categoryColor = message.categoryIds?.length
-    ? CATEGORIES.find((category) => category.id === message.categoryIds![0])?.color
-    : undefined;
-
   return (
     <div
       className={classes}
       role="listitem"
       tabIndex={0}
-      style={categoryColor ? { boxShadow: `inset 3px 0 0 ${categoryColor}` } : undefined}
       onClick={onOpen}
       onKeyDown={(event) => {
         if (event.key === 'Enter') onOpen();

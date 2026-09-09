@@ -31,6 +31,9 @@ export type { MenuProps, MenuItem } from './Menu/Menu';
 export { ResizeHandle } from './ResizeHandle/ResizeHandle';
 export type { ResizeHandleProps } from './ResizeHandle/ResizeHandle';
 
+export { RichTextEditor } from './RichTextEditor/RichTextEditor';
+export type { RichTextEditorProps } from './RichTextEditor/RichTextEditor';
+
 export { ToastProvider } from './Toast/ToastContext';
 export type { ToastAction } from './Toast/toastContextInstance';
 export { useToast } from './Toast/useToast';

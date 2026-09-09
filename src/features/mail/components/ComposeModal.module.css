@@ -13,13 +13,63 @@
   padding-bottom: var(--spacing-m);
 }
 
-.field:last-child {
-  border-bottom: none;
-}
-
 .label {
   font-size: var(--font-size-xs);
   color: var(--color-common-low-contrast);
+}
+
+.recipientRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+}
+
+.recipientToggles {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  flex-shrink: 0;
+}
+
+.recipientToggle {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-accent);
+  white-space: nowrap;
+}
+
+.recipientToggle:hover {
+  color: var(--color-common-brand-background);
+}
+
+.subjectRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+}
+
+.menuAnchor {
+  position: relative;
+  display: flex;
+}
+
+.importanceButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px var(--spacing-xs);
+  border-radius: var(--radius-s);
+  font-size: var(--font-size-xs);
+  color: var(--color-common-low-contrast);
+  white-space: nowrap;
+}
+
+.importanceButton:hover {
+  background: var(--color-common-transparent);
+}
+
+.importanceButtonActive {
+  color: var(--color-common-error-content);
 }
 
 .input {
@@ -30,6 +80,8 @@
   color: var(--color-common-contrast);
   background: transparent;
   padding: 4px 0;
+  width: 100%;
+  min-width: 0;
 }
 
 .inputError {
@@ -41,14 +93,147 @@
   color: var(--color-common-error-content);
 }
 
-.textarea {
-  border: none;
-  outline: none;
-  resize: vertical;
-  min-height: 160px;
-  font-size: var(--font-size-s);
-  line-height: var(--line-height-m);
+.editorField {
+  min-height: 220px;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s);
+}
+
+.attachmentChip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--color-lines-divider-bright);
+  background: var(--color-elevation-1-main);
+  max-width: 240px;
+}
+
+.attachmentIcon {
+  color: var(--color-common-low-contrast);
+  flex-shrink: 0;
+}
+
+.attachmentName {
+  font-size: var(--font-size-xs);
   color: var(--color-common-contrast);
-  background: transparent;
-  font-family: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.attachmentSize {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-additional);
+  flex-shrink: 0;
+}
+
+.attachmentRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  color: var(--color-common-low-contrast);
+  flex-shrink: 0;
+}
+
+.attachmentRemove:hover {
+  background: var(--color-common-transparent);
+  color: var(--color-common-error-content);
+}
+
+/* Footer — a single flex-growing child of Modal's own right-aligned footer,
+   so it spans the full width and can push the discard button to the edge. */
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  flex: 1;
+  min-width: 0;
+}
+
+.sendGroup {
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--radius-s);
+  overflow: visible;
+}
+
+.sendButton {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.scheduleCaret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+  border-left: 1px solid rgba(255, 255, 255, 0.24);
+  border-top-right-radius: var(--radius-s);
+  border-bottom-right-radius: var(--radius-s);
+}
+
+.scheduleCaret:hover {
+  background: #0052d6;
+}
+
+.customSchedule {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+  padding: var(--spacing-s);
+  background: var(--color-elevation-0-main);
+  border: 1px solid var(--color-lines-divider);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-popover);
+  min-width: 220px;
+}
+
+.customScheduleInput {
+  border: 1px solid var(--color-lines-divider-bright);
+  border-radius: var(--radius-s);
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-s);
+  color: var(--color-common-contrast);
+}
+
+.customScheduleCancel {
+  align-self: flex-end;
+  font-size: var(--font-size-xs);
+  color: var(--color-common-low-contrast);
+}
+
+.customScheduleCancel:hover {
+  color: var(--color-common-contrast);
+}
+
+.scheduleHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-low-contrast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footerSpacer {
+  flex: 1;
 }

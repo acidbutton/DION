@@ -3,10 +3,10 @@ import { AppShell } from '../layout/AppShell/AppShell';
 import { ComingSoon } from '../layout/ComingSoon/ComingSoon';
 import { MailPage } from '../features/mail/MailPage';
 import { WhiteboardsPage } from '../features/whiteboards/WhiteboardsPage';
+import { CalendarPage } from '../features/calendar/CalendarPage';
 
 const placeholders: Record<string, string> = {
   home: 'Главная',
-  calendar: 'Календарь',
   chats: 'Чаты',
   contacts: 'Адресная книга',
   video: 'Видео',
@@ -21,6 +21,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Navigate to="/mail" replace /> },
       { path: 'mail', element: <MailPage /> },
       { path: 'whiteboards', element: <WhiteboardsPage /> },
+      { path: 'calendar', element: <CalendarPage /> },
       ...Object.entries(placeholders).map(([path, title]) => ({
         path,
         element: <ComingSoon title={title} />,

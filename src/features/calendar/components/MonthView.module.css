@@ -1,0 +1,110 @@
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  border-top: 1px solid var(--color-lines-divider);
+  border-left: 1px solid var(--color-lines-divider);
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-xxs) var(--spacing-xxs) 0;
+  border-right: 1px solid var(--color-lines-divider);
+  border-bottom: 1px solid var(--color-lines-divider);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.outside {
+  background: var(--color-elevation-1-main);
+}
+
+.outside .dayNumber {
+  color: var(--color-common-additional);
+}
+
+.dayNumber {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 4px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  color: var(--color-common-contrast);
+  flex-shrink: 0;
+}
+
+.dayNumber:hover {
+  background: var(--color-common-transparent);
+}
+
+.today {
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+}
+
+.today:hover {
+  background: #0052d6;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.eventChip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 4px;
+  border-radius: var(--radius-xxs);
+  background: color-mix(in srgb, var(--chip-color) 14%, white);
+  border-left: 3px solid var(--chip-color);
+  font-size: var(--font-size-xxs);
+  line-height: var(--line-height-s);
+  text-align: left;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.eventChip:hover {
+  background: color-mix(in srgb, var(--chip-color) 24%, white);
+}
+
+.eventTime {
+  flex-shrink: 0;
+  color: var(--color-common-low-contrast);
+  font-weight: var(--font-weight-medium);
+}
+
+.eventTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-common-contrast);
+  min-width: 0;
+}
+
+.overflow {
+  align-self: flex-start;
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-low-contrast);
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+.overflow:hover {
+  color: var(--color-common-brand-background);
+}

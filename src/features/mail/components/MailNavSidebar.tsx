@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronsLeft,
   ChevronsRight,
+  Clock,
   Folder,
   FolderClosed,
   Mail as MailIcon,
@@ -21,6 +22,7 @@ import styles from './MailNavSidebar.module.css';
 const SYSTEM_FOLDERS: Array<{ id: SystemFolderId; label: string; icon: ReactNode }> = [
   { id: 'inbox', label: 'Входящие', icon: <MailIcon size={16} /> },
   { id: 'sent', label: 'Отправленные', icon: <Send size={16} /> },
+  { id: 'outbox', label: 'Исходящие', icon: <Clock size={16} /> },
   { id: 'drafts', label: 'Черновики', icon: <FolderClosed size={16} /> },
   { id: 'spam', label: 'Спам', icon: <AlertTriangle size={16} /> },
   { id: 'trash', label: 'Корзина', icon: <Trash2 size={16} /> },

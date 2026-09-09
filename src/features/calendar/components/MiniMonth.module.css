@@ -1,0 +1,71 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-s) var(--spacing-m);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-common-contrast);
+  text-transform: capitalize;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-additional);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-contrast);
+}
+
+.day:hover {
+  background: var(--color-common-transparent);
+}
+
+.outside {
+  color: var(--color-common-additional);
+}
+
+.today {
+  color: var(--color-common-brand-background);
+  font-weight: var(--font-weight-semibold);
+}
+
+.selected {
+  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-contrast);
+}
+
+.selected:hover {
+  background: var(--color-common-brand-background);
+}

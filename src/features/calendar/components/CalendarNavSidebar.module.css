@@ -1,0 +1,50 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-l);
+  width: 264px;
+  flex-shrink: 0;
+  height: 100%;
+  padding: var(--spacing-xl) var(--spacing-l) var(--spacing-l);
+  border-right: 1px solid var(--color-lines-divider);
+  overflow-y: auto;
+}
+
+.calendarList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: 0 var(--spacing-m);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xxs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-common-additional);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caption-caps);
+  margin-bottom: var(--spacing-xxs);
+}
+
+.calendarRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  min-height: 28px;
+}
+
+.calendarDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.calendarName {
+  font-size: var(--font-size-s);
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}

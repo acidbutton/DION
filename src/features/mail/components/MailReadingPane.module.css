@@ -43,6 +43,30 @@
   min-width: 0;
 }
 
+.scheduledBanner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  margin: var(--spacing-s) var(--spacing-l) 0;
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--radius-m);
+  background: rgba(0, 98, 255, 0.08);
+  color: var(--color-sky-contrast);
+  font-size: var(--font-size-s);
+  flex-shrink: 0;
+}
+
+.scheduledBannerAction {
+  margin-left: auto;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-common-brand-background);
+  flex-shrink: 0;
+}
+
+.scheduledBannerAction:hover {
+  text-decoration: underline;
+}
+
 .rowContainer {
   padding: 0 var(--spacing-l);
   flex-shrink: 0;
@@ -184,6 +208,26 @@
   white-space: pre-wrap;
 }
 
+.bodyHtml {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-xl);
+  color: var(--color-common-contrast);
+}
+
+.bodyHtml :global(ul),
+.bodyHtml :global(ol) {
+  padding-left: 1.4em;
+}
+
+.bodyHtml :global(a) {
+  color: var(--color-common-brand-background);
+  text-decoration: underline;
+}
+
+.bodyHtml :global(p) {
+  margin: 0 0 var(--spacing-s);
+}
+
 .attachments {
   display: flex;
   flex-wrap: wrap;
@@ -265,6 +309,39 @@
   flex-direction: column;
 }
 
+.threadHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+  padding: var(--spacing-s) var(--spacing-l);
+  border-top: 1px solid var(--color-lines-divider);
+  background: var(--color-elevation-1-main);
+}
+
+.threadHeaderLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-low-contrast);
+}
+
+.threadToggleAll {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-common-brand-background);
+}
+
+.threadToggleAll:hover {
+  color: #0052d6;
+}
+
+.threadEntry {
+  display: flex;
+  flex-direction: column;
+}
+
 .threadRow {
   display: flex;
   flex-wrap: wrap;
@@ -274,6 +351,17 @@
   border-top: 1px solid var(--color-lines-divider);
   text-align: left;
   width: 100%;
+}
+
+.threadBody {
+  padding: 0 var(--spacing-l) var(--spacing-l) calc(var(--spacing-l) + 16px + var(--spacing-m) + 32px + var(--spacing-m));
+}
+
+.threadBody p {
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+  color: var(--color-common-contrast);
+  white-space: pre-wrap;
 }
 
 .threadRow:hover {

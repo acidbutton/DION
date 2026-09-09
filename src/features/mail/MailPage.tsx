@@ -6,10 +6,10 @@ import { MailNavSidebar } from './components/MailNavSidebar';
 import { MailList, type MoveTarget } from './components/MailList';
 import { MailReadingPane } from './components/MailReadingPane';
 import { MailboxAssistantPanel } from './components/MailboxAssistantPanel';
-import { ComposeModal, type ComposeDraft } from './components/ComposeModal';
+import { ComposeModal } from './components/ComposeModal';
 import { ACCOUNTS } from './data/accounts';
 import { MESSAGES } from './data/messages';
-import type { CustomFolder, FilterKey, MailAttachment, MailMessage, ReadingPanePosition, SortKey, SystemFolderId } from './types';
+import { EMPTY_DRAFT, type ComposeDraft, type CustomFolder, type FilterKey, type MailAttachment, type MailMessage, type ReadingPanePosition, type SortKey, type SystemFolderId } from './types';
 import { badgeCount, countUnreadByFolder } from './utils/counts';
 import styles from './MailPage.module.css';
 
@@ -28,6 +28,7 @@ const INITIAL_UNREAD = countUnreadByFolder(MESSAGES);
 const SYSTEM_FOLDER_LABELS: Record<SystemFolderId, string> = {
   inbox: 'Входящие',
   sent: 'Отправленные',
+  outbox: 'Исходящие',
   drafts: 'Черновики',
   spam: 'Спам',
   trash: 'Корзина',
@@ -114,13 +115,16 @@ function MailPageContent() {
 
   const activeMessage = messages.find((message) => message.id === activeMessageId) ?? null;
   const isTrashFolder = selectedFolder.folderId === 'trash';
+  const isOutboxFolder = selectedFolder.folderId === 'outbox';
 
   const moveTargets: MoveTarget[] = useMemo(() => {
     const account = ACCOUNTS.find((a) => a.id === selectedFolder.accountId);
     if (!account) return [];
     const targets: MoveTarget[] = [];
     (Object.keys(SYSTEM_FOLDER_LABELS) as SystemFolderId[]).forEach((id) => {
-      if (id !== selectedFolder.folderId && id !== 'trash') targets.push({ folderId: id, label: SYSTEM_FOLDER_LABELS[id] });
+      if (id !== selectedFolder.folderId && id !== 'trash' && id !== 'outbox') {
+        targets.push({ folderId: id, label: SYSTEM_FOLDER_LABELS[id] });
+      }
     });
     for (const folder of flattenFolders(account.customFolders)) {
       if (folder.id !== selectedFolder.folderId) targets.push({ folderId: folder.id, label: folder.name });
@@ -277,47 +281,83 @@ function MailPageContent() {
   }
 
   function handleCompose() {
-    setCompose({ mode: 'new', draft: { to: '', subject: '', body: '' } });
+    setCompose({ mode: 'new', draft: EMPTY_DRAFT });
     setMobileNavOpen(false);
   }
 
   function handleReply(message: MailMessage, mode: 'reply' | 'replyAll' | 'forward') {
     const to = mode === 'forward' ? '' : mode === 'replyAll' ? message.recipients.join(', ') : message.senderName;
     const subjectPrefix = mode === 'forward' ? 'Fwd' : 'Re';
+    const quotedBody =
+      mode === 'forward'
+        ? `<p></p><p>---------- Пересланное сообщение ----------</p><p>${message.bodyHtml ?? message.body}</p>`
+        : '';
     setCompose({
       mode,
-      draft: {
-        to,
-        subject: `${subjectPrefix}: ${message.subject}`,
-        body: mode === 'forward' ? `\n\n---\n${message.body}` : '',
-      },
+      draft: { ...EMPTY_DRAFT, to, subject: `${subjectPrefix}: ${message.subject}`, bodyHtml: quotedBody },
     });
   }
 
   function handleQuickReply(message: MailMessage, text: string) {
     setCompose({
       mode: 'reply',
-      draft: { to: message.senderName, subject: `Re: ${message.subject}`, body: text },
+      draft: { ...EMPTY_DRAFT, to: message.senderName, subject: `Re: ${message.subject}`, bodyHtml: `<p>${text}</p>` },
     });
   }
 
-  function handleSend(draft: ComposeDraft) {
-    const newMessage: MailMessage = {
-      id: `sent-${Date.now()}`,
+  function splitRecipients(value: string): string[] {
+    return value.split(',').map((v) => v.trim()).filter(Boolean);
+  }
+
+  function buildMessageFromDraft(draft: ComposeDraft, folderId: string): MailMessage {
+    const plainText = draft.bodyHtml.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    return {
+      id: `msg-${Date.now()}-${Math.round(Math.random() * 1000)}`,
       accountId: selectedFolder.accountId,
-      folderId: 'sent',
+      folderId,
       senderName: 'Я',
       senderEmail: 'me@dion.vc',
       subject: draft.subject || '(Без темы)',
-      preview: draft.body.slice(0, 120),
-      body: draft.body,
-      recipients: draft.to.split(',').map((value) => value.trim()).filter(Boolean),
+      preview: plainText.slice(0, 140),
+      body: plainText,
+      bodyHtml: draft.bodyHtml,
+      recipients: splitRecipients(draft.to),
+      cc: splitRecipients(draft.cc),
+      bcc: splitRecipients(draft.bcc),
       date: new Date(),
       unread: false,
+      attachments: draft.attachments,
+      importance: draft.importance,
+      scheduledAt: draft.scheduledAt ?? undefined,
     };
-    setMessages((prev) => [newMessage, ...prev]);
+  }
+
+  function handleSend(draft: ComposeDraft) {
+    if (draft.scheduledAt) {
+      const message = buildMessageFromDraft(draft, 'outbox');
+      setMessages((prev) => [message, ...prev]);
+      setCompose(null);
+      showToast(
+        `Письмо запланировано на ${draft.scheduledAt.toLocaleString('ru-RU', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}.`,
+      );
+      return;
+    }
+    const message = buildMessageFromDraft(draft, 'sent');
+    setMessages((prev) => [message, ...prev]);
     setCompose(null);
     showToast('Письмо отправлено.');
+  }
+
+  function handleSaveDraft(draft: ComposeDraft) {
+    const message = buildMessageFromDraft(draft, 'drafts');
+    setMessages((prev) => [message, ...prev]);
+    showToast('Письмо сохранено в черновиках.');
+  }
+
+  function handleSendOutboxNow(ids: string[]) {
+    setMessages((prev) => prev.map((m) => (ids.includes(m.id) ? { ...m, folderId: 'sent', scheduledAt: undefined } : m)));
+    setSelectedIds(new Set());
+    showToast(ids.length > 1 ? `Писем отправлено: ${ids.length}.` : 'Письмо отправлено.');
   }
 
   function handleAssistantSelectMessage(message: MailMessage) {
@@ -344,6 +384,8 @@ function MailPageContent() {
         onDeleteForever={handleDeleteForever}
         onRestore={handleRestore}
         isTrashFolder={isTrashFolder}
+        isOutboxFolder={isOutboxFolder}
+        onSendNow={handleSendOutboxNow}
         moveTargets={moveTargets}
         onAttachmentClick={handleAttachmentClick}
         onBack={isCompact ? () => setMobilePane('list') : undefined}
@@ -374,6 +416,8 @@ function MailPageContent() {
       onDeleteForever={handleDeleteForever}
       onRestore={handleRestore}
       isTrashFolder={isTrashFolder}
+      isOutboxFolder={isOutboxFolder}
+      onSendNow={handleSendOutboxNow}
       moveTargets={moveTargets}
       onOpenAssistant={() => setAssistantOpen(true)}
       readingPanePosition={readingPanePosition}
@@ -428,7 +472,7 @@ function MailPageContent() {
           />
         )}
 
-        {compose && <ComposeModal initial={compose.draft} onClose={() => setCompose(null)} onSend={handleSend} />}
+        {compose && <ComposeModal initial={compose.draft} onClose={() => setCompose(null)} onSend={handleSend} onSaveDraft={handleSaveDraft} />}
       </div>
     );
   }
@@ -466,7 +510,7 @@ function MailPageContent() {
         />
       )}
 
-      {compose && <ComposeModal initial={compose.draft} onClose={() => setCompose(null)} onSend={handleSend} />}
+      {compose && <ComposeModal initial={compose.draft} onClose={() => setCompose(null)} onSend={handleSend} onSaveDraft={handleSaveDraft} />}
 
       {readingPanePosition === 'hidden' && activeMessage && (
         <Modal title={activeMessage.subject} onClose={() => setActiveMessageId(null)} width={720}>

@@ -95,6 +95,11 @@
   background: var(--color-sky-main);
 }
 
+/* Blue stripe = secondary/duplicate unread indicator, independent of category color. */
+.item.unread {
+  box-shadow: inset 3px 0 0 var(--color-common-brand-background);
+}
+
 .leftSlot {
   position: relative;
   width: 40px;
