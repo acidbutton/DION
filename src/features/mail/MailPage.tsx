@@ -286,7 +286,7 @@ function MailPageContent() {
   }
 
   function handleReply(message: MailMessage, mode: 'reply' | 'replyAll' | 'forward') {
-    const to = mode === 'forward' ? '' : mode === 'replyAll' ? message.recipients.join(', ') : message.senderName;
+    const to = mode === 'forward' ? [] : mode === 'replyAll' ? message.recipients : [message.senderName];
     const subjectPrefix = mode === 'forward' ? 'Fwd' : 'Re';
     const quotedBody =
       mode === 'forward'
@@ -301,12 +301,8 @@ function MailPageContent() {
   function handleQuickReply(message: MailMessage, text: string) {
     setCompose({
       mode: 'reply',
-      draft: { ...EMPTY_DRAFT, to: message.senderName, subject: `Re: ${message.subject}`, bodyHtml: `<p>${text}</p>` },
+      draft: { ...EMPTY_DRAFT, to: [message.senderName], subject: `Re: ${message.subject}`, bodyHtml: `<p>${text}</p>` },
     });
-  }
-
-  function splitRecipients(value: string): string[] {
-    return value.split(',').map((v) => v.trim()).filter(Boolean);
   }
 
   function buildMessageFromDraft(draft: ComposeDraft, folderId: string): MailMessage {
@@ -321,9 +317,9 @@ function MailPageContent() {
       preview: plainText.slice(0, 140),
       body: plainText,
       bodyHtml: draft.bodyHtml,
-      recipients: splitRecipients(draft.to),
-      cc: splitRecipients(draft.cc),
-      bcc: splitRecipients(draft.bcc),
+      recipients: draft.to,
+      cc: draft.cc,
+      bcc: draft.bcc,
       date: new Date(),
       unread: false,
       attachments: draft.attachments,

@@ -10,6 +10,7 @@ import {
 } from '@phosphor-icons/react';
 import { Button, IconButton, Menu, Modal, RichTextEditor, type MenuItem } from '../../../components';
 import type { AttachmentKind, ComposeDraft, Importance, MailAttachment } from '../types';
+import { RecipientInput } from './RecipientInput';
 import styles from './ComposeModal.module.css';
 
 export interface ComposeModalProps {
@@ -40,7 +41,14 @@ function guessKind(fileName: string): AttachmentKind {
 
 function isEmptyDraft(draft: ComposeDraft): boolean {
   const bodyText = draft.bodyHtml.replace(/<[^>]*>/g, '').trim();
-  return !draft.to.trim() && !draft.cc.trim() && !draft.bcc.trim() && !draft.subject.trim() && !bodyText && draft.attachments.length === 0;
+  return (
+    draft.to.length === 0 &&
+    draft.cc.length === 0 &&
+    draft.bcc.length === 0 &&
+    !draft.subject.trim() &&
+    !bodyText &&
+    draft.attachments.length === 0
+  );
 }
 
 function addHours(base: Date, hours: number): Date {
@@ -65,14 +73,14 @@ const IMPORTANCE_META: Record<Importance, { label: string; icon: ReactNode }> = 
 export function ComposeModal({ initial, onClose, onSend, onSaveDraft }: ComposeModalProps) {
   const [draft, setDraft] = useState<ComposeDraft>(initial);
   const [touched, setTouched] = useState(false);
-  const [showCc, setShowCc] = useState(Boolean(initial.cc));
-  const [showBcc, setShowBcc] = useState(Boolean(initial.bcc));
+  const [showCc, setShowCc] = useState(initial.cc.length > 0);
+  const [showBcc, setShowBcc] = useState(initial.bcc.length > 0);
   const [scheduleMenuOpen, setScheduleMenuOpen] = useState(false);
   const [importanceMenuOpen, setImportanceMenuOpen] = useState(false);
   const [customScheduleOpen, setCustomScheduleOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const toIsValid = draft.to.trim().length > 0;
+  const toIsValid = draft.to.length > 0;
 
   function updateDraft(patch: Partial<ComposeDraft>) {
     setDraft((prev) => ({ ...prev, ...patch }));
@@ -199,12 +207,12 @@ export function ComposeModal({ initial, onClose, onSend, onSaveDraft }: ComposeM
             Кому
           </label>
           <div className={styles.recipientRow}>
-            <input
+            <RecipientInput
               id="compose-to"
-              className={[styles.input, touched && !toIsValid ? styles.inputError : ''].join(' ')}
               value={draft.to}
-              onChange={(event) => updateDraft({ to: event.target.value })}
+              onChange={(to) => updateDraft({ to })}
               placeholder="Введите имя или email"
+              error={touched && !toIsValid}
             />
             <div className={styles.recipientToggles}>
               {!showCc && (
@@ -227,11 +235,10 @@ export function ComposeModal({ initial, onClose, onSend, onSaveDraft }: ComposeM
             <label className={styles.label} htmlFor="compose-cc">
               Копия
             </label>
-            <input
+            <RecipientInput
               id="compose-cc"
-              className={styles.input}
               value={draft.cc}
-              onChange={(event) => updateDraft({ cc: event.target.value })}
+              onChange={(cc) => updateDraft({ cc })}
               placeholder="Введите имя или email"
             />
           </div>
@@ -242,11 +249,10 @@ export function ComposeModal({ initial, onClose, onSend, onSaveDraft }: ComposeM
             <label className={styles.label} htmlFor="compose-bcc">
               Скрытая копия
             </label>
-            <input
+            <RecipientInput
               id="compose-bcc"
-              className={styles.input}
               value={draft.bcc}
-              onChange={(event) => updateDraft({ bcc: event.target.value })}
+              onChange={(bcc) => updateDraft({ bcc })}
               placeholder="Введите имя или email"
             />
           </div>

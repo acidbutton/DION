@@ -74,9 +74,9 @@ export type FilterKey = 'all' | 'unread' | 'flagged' | 'attachments';
 export type ReadingPanePosition = 'right' | 'bottom' | 'hidden';
 
 export interface ComposeDraft {
-  to: string;
-  cc: string;
-  bcc: string;
+  to: string[];
+  cc: string[];
+  bcc: string[];
   subject: string;
   bodyHtml: string;
   attachments: MailAttachment[];
@@ -85,15 +85,21 @@ export interface ComposeDraft {
 }
 
 export const EMPTY_DRAFT: ComposeDraft = {
-  to: '',
-  cc: '',
-  bcc: '',
+  to: [],
+  cc: [],
+  bcc: [],
   subject: '',
   bodyHtml: '',
   attachments: [],
   importance: 'normal',
   scheduledAt: null,
 };
+
+export interface Contact {
+  id: string;
+  name: string;
+  email: string;
+}
 
 export interface MessageInsight {
   summary: string;

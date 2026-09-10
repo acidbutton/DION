@@ -1,0 +1,126 @@
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  min-height: 28px;
+  padding: 2px 0;
+  cursor: text;
+}
+
+.fieldError .input {
+  color: var(--color-common-error-content);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 6px 0 2px;
+  border-radius: var(--radius-full);
+  background: var(--color-elevation-1-main);
+  flex-shrink: 0;
+}
+
+.chipAvatar {
+  flex-shrink: 0;
+}
+
+.chipName {
+  font-size: var(--font-size-xs);
+  color: var(--color-common-contrast);
+  white-space: nowrap;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chipRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  color: var(--color-common-additional);
+  flex-shrink: 0;
+}
+
+.chipRemove:hover {
+  background: var(--color-common-transparent);
+  color: var(--color-common-error-content);
+}
+
+.inputAnchor {
+  position: relative;
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+  color: var(--color-common-contrast);
+  padding: 4px 0;
+}
+
+.suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  min-width: 220px;
+  max-width: 320px;
+  padding: var(--spacing-xxs);
+  background: var(--color-elevation-0-main);
+  border: 1px solid var(--color-lines-divider);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-popover);
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  padding: var(--spacing-xs) var(--spacing-s);
+  border-radius: var(--radius-s);
+  text-align: left;
+}
+
+.suggestion:hover {
+  background: var(--color-common-transparent);
+}
+
+.suggestionText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.suggestionName {
+  font-size: var(--font-size-s);
+  color: var(--color-common-contrast);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.suggestionEmail {
+  font-size: var(--font-size-xxs);
+  color: var(--color-common-additional);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
