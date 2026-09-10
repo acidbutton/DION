@@ -31,6 +31,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  color: var(--color-common-contrast);
 }
 
 .collapseButton {
