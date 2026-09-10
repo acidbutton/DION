@@ -426,6 +426,7 @@ function MailListItem({
       </span>
       <div className={styles.content}>
         <div className={styles.titleRow}>
+          {message.unread && <span className={styles.unreadDot} aria-hidden />}
           {message.online && <span className={styles.onlineDot} aria-hidden />}
           <span className={styles.subject}>{message.subject}</span>
         </div>

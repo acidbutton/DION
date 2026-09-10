@@ -150,6 +150,17 @@
   flex-shrink: 0;
 }
 
+/* Third duplicate unread signal alongside the blue left stripe and the
+   bold subject — a small blue dot before the subject, same color as the
+   stripe. */
+.unreadDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-common-brand-background);
+  flex-shrink: 0;
+}
+
 .subject {
   flex: 1;
   min-width: 0;
