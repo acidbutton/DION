@@ -1,31 +1,29 @@
-import type { ReactNode } from 'react';
+import type { Icon } from '@phosphor-icons/react';
 import {
-  AddressBook as Contact,
-  Calendar,
-  ChatCircleText as MessageSquare,
+  AddressBookTabs as Contact,
+  CalendarDots as Calendar,
+  ChatCircleDots as MessageSquare,
   Envelope as Mail,
   Folder,
   House as Home,
+  Play as Video,
   Presentation,
-  VideoCamera as Video,
 } from '@phosphor-icons/react';
 
 export interface RailItem {
   id: string;
   label: string;
   to: string;
-  icon: ReactNode;
+  Icon: Icon;
 }
 
-const ICON_SIZE = 20;
-
 export const railItems: RailItem[] = [
-  { id: 'home', label: 'Главная', to: '/home', icon: <Home size={ICON_SIZE} /> },
-  { id: 'calendar', label: 'Календарь', to: '/calendar', icon: <Calendar size={ICON_SIZE} /> },
-  { id: 'mail', label: 'Почта', to: '/mail', icon: <Mail size={ICON_SIZE} /> },
-  { id: 'chats', label: 'Чаты', to: '/chats', icon: <MessageSquare size={ICON_SIZE} /> },
-  { id: 'contacts', label: 'Адресная книга', to: '/contacts', icon: <Contact size={ICON_SIZE} /> },
-  { id: 'whiteboards', label: 'Доски', to: '/whiteboards', icon: <Presentation size={ICON_SIZE} /> },
-  { id: 'video', label: 'Видео', to: '/video', icon: <Video size={ICON_SIZE} /> },
-  { id: 'files', label: 'Файлы', to: '/files', icon: <Folder size={ICON_SIZE} /> },
+  { id: 'home', label: 'Главная', to: '/home', Icon: Home },
+  { id: 'calendar', label: 'Календарь', to: '/calendar', Icon: Calendar },
+  { id: 'mail', label: 'Почта', to: '/mail', Icon: Mail },
+  { id: 'chats', label: 'Чаты', to: '/chats', Icon: MessageSquare },
+  { id: 'contacts', label: 'Адресная книга', to: '/contacts', Icon: Contact },
+  { id: 'whiteboards', label: 'Доски', to: '/whiteboards', Icon: Presentation },
+  { id: 'video', label: 'Видео', to: '/video', Icon: Video },
+  { id: 'files', label: 'Файлы', to: '/files', Icon: Folder },
 ];

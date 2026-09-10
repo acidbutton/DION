@@ -9,15 +9,17 @@ export interface AvatarProps {
   className?: string;
 }
 
-const PALETTE = [
-  '#0062ff',
-  '#7a5cff',
-  '#00a389',
-  '#e0662e',
-  '#c73e6b',
-  '#3381ff',
-  '#3f8f4f',
-  '#a15ce0',
+/** Soft/pale badge colors: a pale tint background paired with a readable
+ * darker shade of the same hue for the initials text. */
+const PALETTE: Array<{ bg: string; fg: string }> = [
+  { bg: '#d9e7ff', fg: '#1f5fd9' },
+  { bg: '#e6e0ff', fg: '#6b46e5' },
+  { bg: '#d3f3ec', fg: '#0e8a72' },
+  { bg: '#ffe3d1', fg: '#c2521a' },
+  { bg: '#fce0ea', fg: '#b23a63' },
+  { bg: '#dcebff', fg: '#2569d6' },
+  { bg: '#dff0e1', fg: '#2e7a3d' },
+  { bg: '#f1e1fb', fg: '#8a3fd1' },
 ];
 
 function hashString(value: string): number {
@@ -37,18 +39,18 @@ function getInitials(name: string): string {
 }
 
 export function Avatar({ name, size = 32, src, className }: AvatarProps) {
-  const color = PALETTE[hashString(name) % PALETTE.length];
+  const { bg, fg } = PALETTE[hashString(name) % PALETTE.length];
 
   return (
     <span
       className={[styles.avatar, className ?? ''].filter(Boolean).join(' ')}
-      style={{ width: size, height: size, backgroundColor: src ? undefined : color }}
+      style={{ width: size, height: size, backgroundColor: src ? undefined : bg }}
       title={name}
     >
       {src ? (
         <img src={src} alt="" className={styles.image} />
       ) : (
-        <span className={styles.initials} style={{ fontSize: size <= 24 ? 10 : size <= 32 ? 13 : 14 }}>
+        <span className={styles.initials} style={{ fontSize: size <= 24 ? 10 : size <= 32 ? 13 : 14, color: fg }}>
           {getInitials(name)}
         </span>
       )}

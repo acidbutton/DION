@@ -71,23 +71,20 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-s);
-  color: var(--color-common-low-contrast);
-  transition: background-color 0.12s ease, color 0.12s ease;
+  color: var(--color-common-additional);
+  transition: color 0.12s ease;
 }
 
 .item:hover {
-  color: var(--color-common-contrast);
-  background: var(--color-common-transparent);
+  color: var(--color-common-low-contrast);
 }
 
 .active {
-  background: var(--color-common-brand-background);
-  color: var(--color-common-brand-contrast);
+  color: var(--color-common-brand-soft);
 }
 
 .active:hover {
-  color: var(--color-common-brand-contrast);
-  background: var(--color-common-brand-background);
+  color: var(--color-common-brand-soft);
 }
 
 .bottom {

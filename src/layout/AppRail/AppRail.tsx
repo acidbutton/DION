@@ -28,7 +28,7 @@ export function AppRail() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path
                 d="M7 3H17C17 3 13 7 13 12C13 17 17 21 17 21H7C7 21 11 17 11 12C11 7 7 3 7 3Z"
-                fill="#14151A"
+                fill="var(--color-common-contrast)"
               />
             </svg>
           </div>
@@ -37,7 +37,7 @@ export function AppRail() {
           </button>
         </div>
         <ul className={styles.items}>
-          {railItems.map((item) => (
+          {railItems.map(({ Icon, ...item }) => (
             <li key={item.id}>
               <NavLink
                 to={item.to}
@@ -45,7 +45,7 @@ export function AppRail() {
                 title={item.label}
                 aria-label={item.label}
               >
-                {item.icon}
+                {({ isActive }) => <Icon size={20} weight={isActive ? 'fill' : 'regular'} />}
               </NavLink>
             </li>
           ))}

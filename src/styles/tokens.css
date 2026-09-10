@@ -12,6 +12,9 @@
   --color-common-accent: #3381ff;
   --color-common-brand-background: #0062ff;
   --color-common-brand-contrast: #fafcff;
+  /* Soft accent blue, sampled from the "Icons.fig" export — used for the
+     app rail's active-icon state (icon-only, no pill background). */
+  --color-common-brand-soft: #68a2ff;
   --color-common-transparent: rgba(0, 0, 0, 0.05);
   --color-common-divider: rgba(0, 0, 0, 0.05);
   --color-common-error-content: #f94c4c;
